@@ -27,9 +27,10 @@ jobs:
       
       - name: Conectando y desplegando el compose...
         run: |
-          ssh -i  ~/.ssh/id_rsa ${{ secrets.DROPLET_USER }} << 'EOF'
+          ssh -i  ~/.ssh/id_rsa ${{ secrets.DROPLET_USER }}@${{ secrets.DIGITALOCEAN_IP }} << 'EOF'
+            rm -rf /root/docker-scale-python
+            git clone ${{ secrets.REPOSITORY_URL }} /root/docker-scale-python
             cd /root/docker-scale-python
-            git pull origin master
             docker compose down
             docker compose up -d --build
           EOF
