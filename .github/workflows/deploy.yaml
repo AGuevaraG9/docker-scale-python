@@ -12,6 +12,12 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v4
 
+      - name: Detalle del debug
+        run:
+          echo "Testeando"
+        env:
+          ACTIONS_STEP_DEBUG: true
+
       - name: Configurando y conectando al servidor de digital ocean...
         run: |
           mkdir -p ~/.ssh
